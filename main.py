@@ -116,14 +116,14 @@ def add_post():
 @app.route('/post')
 def show_post():
     post_id = request.args.get('index')
-    fetched_post = BlogPost.query.filter_by(id=post_id).first()
+    fetched_post = BlogPost.query.get(post_id)
     return render_template('post.html', post=fetched_post)
 
 
 @app.route('/edit-post', methods=['GET', 'POST'])
 def edit_post():
     post_id = request.args.get('post_id')
-    fetched_post = BlogPost.query.filter_by(id=post_id).first()
+    fetched_post = BlogPost.query.get(post_id)
     edited_post_form = EditPostForm()
     if request.method == 'GET':
         edited_post_form.title.data = fetched_post.title
@@ -149,6 +149,16 @@ def edit_post():
             return render_template('make-post.html',
                                    form=edited_post_form,
                                    title=title)
+
+
+@app.route('/delete')
+def delete_post():
+    post_id = request.args.get('post_id')
+    post_to_delete = BlogPost.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('get_all_posts'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
