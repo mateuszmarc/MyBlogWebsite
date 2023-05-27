@@ -1,4 +1,5 @@
 {% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
 {% include "header.html" %}
@@ -9,8 +10,13 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
+            {% if title %}
+            <h1>{{ title }}</h1>
+            <span class="subheading">You're going to edit a great blog post!</span>
+            {% else %}
             <h1>New Post</h1>
-            <span class="subheading">You're going to make a great blog post!</span>
+            <span class="subheading">You're going to write a great blog post!</span>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -20,12 +26,16 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        
-          <!-- This is where the form will go -->
-
+        <form class="form form-horizontal" method="post" role="form">
+          {{ ckeditor.load() }}
+          {{ ckeditor.config(name='body') }}
+          {{ wtf.quick_form(form)}}
+          {{wtf.form_field(form.submit, button_map={'submit': 'primary'})}}
+        </form>
       </div>
     </div>
   </div>
+
 
 {% include "footer.html" %}
 {% endblock %}
