@@ -101,13 +101,13 @@ class Comment(db.Model):
         return f"{self.id}"
 
 
-# def check_database_table(table):
-#     try:
-#         all_records = db.session.query(table).all()
-#     except OperationalError:
-#         with app.app_context():
-#             db.create_all()
-db.create_all()
+def check_database_table(table):
+    try:
+        all_records = db.session.query(table).all()
+    except OperationalError:
+        with app.app_context():
+            db.create_all()
+# db.create_all()
 
 
 @app.route('/')
