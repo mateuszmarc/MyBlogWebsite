@@ -29,8 +29,7 @@
         <form class="form form-horizontal" method="post" role="form">
           {{ ckeditor.load() }}
           {{ ckeditor.config(name='body') }}
-          {{ wtf.quick_form(form)}}
-          {{wtf.form_field(form.submit, button_map={'submit': 'primary'})}}
+          {{ wtf.quick_form(form, button_map={'submit': 'primary'})}}
         </form>
       </div>
     </div>

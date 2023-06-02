@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>Angela's Blog</h1>
-            <span class="subheading">A collection of Angela's random musings.</span>
+            <h1>Mateusz's Blog</h1>
+            <span class="subheading">A collection of Mateusz's random musings.</span>
           </div>
         </div>
       </div>
@@ -29,18 +29,23 @@
               {{post.subtitle}}
             </h3>
           </a>
+          {% if admin %}
           <p class="post-meta">Posted by
             <a href="#">{{post.author}}</a>
-            on {{post.date}}<a href="{{url_for('delete_post', post_id=post.id)}}">✘</a></p>
+            on {{post.date}}<a href="{{url_for('delete_post', post_id=post.id)}}">✘</a>
+          </p>
+          {% else %}
+            <p class="post-meta">Posted by<a href="#">{{post.author}}</a></p>
         </div>
         <hr>
+        {% endif %}
         {% endfor %}
-
-
+        {% if admin %}
         <!-- New Post -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="{{ url_for('add_post')}}">Create New Post</a>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
