@@ -22,3 +22,4 @@ python-dotenv
 Flask-Gravatar
 flask_login
 flask_bcrypt
+psycopg2-binary
