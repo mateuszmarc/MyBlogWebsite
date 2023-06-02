@@ -22,4 +22,3 @@ python-dotenv
 Flask-Gravatar
 flask_login
 flask_bcrypt
-sqlalchemy
