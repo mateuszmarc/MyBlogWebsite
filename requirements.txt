@@ -21,3 +21,6 @@ gunicorn==20.1.0
 python-dotenv
 Flask-Gravatar
 flask_login
+flask_bcrypt
+os
+sqlalchemy.exc
